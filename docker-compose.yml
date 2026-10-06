@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  integration-tester:
+    build:
+      context: .
+      dockerfile: Dockerfile.tester
+    environment:
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_REGION=${AWS_REGION}
+      - UNIQUE_ID=${UNIQUE_ID}
+      - SIMULATE_ERROR_KEY=${SIMULATE_ERROR_KEY}
+    command: python -m tests.integration.test_pipeline
